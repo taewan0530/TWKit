@@ -12,7 +12,7 @@ import UIKit
 public extension UIView {
     @IBInspectable
     var easyStyle: String {
-        get { return "support only setter" }
+        get { return "Support only setter" }
         set {
             guard let easyStyle = EasyStyleManager.sharedInstance[newValue] else { return }
             applyStyle(easyStyle)
