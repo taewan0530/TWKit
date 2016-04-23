@@ -10,7 +10,7 @@ import Foundation
 
 
 public class EasyStyleManager {
-    class var sharedInstance: EasyStyleManager {
+    public class var sharedInstance: EasyStyleManager {
         struct Static {
             static var onceToken: dispatch_once_t = 0
             static var instance: EasyStyleManager? = nil
@@ -23,7 +23,7 @@ public class EasyStyleManager {
     
     private(set) var registeredStyles: [String: EasyStyle] = [:]
     
-    subscript(key: String) -> EasyStyle? {
+    public subscript(key: String) -> EasyStyle? {
         let contains = registeredStyles.contains { $0.0 == key }
         if contains {
             return registeredStyles[key]
@@ -31,11 +31,11 @@ public class EasyStyleManager {
         return nil
     }
     
-    func registerStyle(key: String, style: EasyStyle) {
+    public func registerStyle(key: String, style: EasyStyle) {
         registeredStyles[key] = style
     }
     
-    func unregisterStyleWithKey(key: String) {
+    public func unregisterStyleWithKey(key: String) {
         registeredStyles.removeValueForKey("key")
     }
 }

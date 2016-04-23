@@ -21,11 +21,11 @@ public class EasyStyle: NSObject {
     }
     
     
-    class func styleWithConfigration(configration: EasyStyleConfigurationBlock) -> EasyStyle {
+    public class func styleWithConfigration(configration: EasyStyleConfigurationBlock) -> EasyStyle {
         return EasyStyle(parentStyle: nil, configration: configration)
     }
     
-    class func styleWithParent(parent: EasyStyle, configration: EasyStyleConfigurationBlock) -> EasyStyle {
+    public class func styleWithParent(parent: EasyStyle, configration: EasyStyleConfigurationBlock) -> EasyStyle {
         return EasyStyle(parentStyle: parent, configration: configration)
     }
 }
