@@ -9,16 +9,20 @@
 import Foundation
 
 public extension String {
-    subscript (i: Int) -> Character {
+    public subscript (i: Int) -> Character {
         return self[self.startIndex.advancedBy(i)]
     }
     
-    subscript (idx i: Int) -> String {
+    public subscript (idx i: Int) -> String {
         return String(self[i] as Character)
     }
     
-    subscript (r: Range<Int>) -> String {
+    public subscript (r: Range<Int>) -> String {
         return substringWithRange(startIndex.advancedBy(r.startIndex)..<startIndex.advancedBy(r.endIndex))
+    }
+    
+    public func trim() -> String {
+        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
     }
 }
 

@@ -20,7 +20,6 @@ public class EasyStyle: NSObject {
         configrationBlock = configration
     }
     
-    
     class func styleWithConfigration(configration: EasyStyleConfigurationBlock) -> EasyStyle {
         return EasyStyle(parentStyle: nil, configration: configration)
     }

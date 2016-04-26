@@ -14,8 +14,12 @@ public extension UIView {
     var easyStyle: String {
         get { return "support only setter" }
         set {
-            guard let easyStyle = EasyStyleManager.sharedInstance[newValue] else { return }
-            applyStyle(easyStyle)
+            let styles = newValue.componentsSeparatedByString(",")
+            for style in styles {
+                let key = style.trim()
+                guard let easyStyle = EasyStyleManager.sharedInstance[key] else { continue }
+                applyStyle(easyStyle)
+            }
         }
     }
 }

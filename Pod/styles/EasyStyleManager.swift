@@ -24,18 +24,21 @@ public class EasyStyleManager {
     private(set) var registeredStyles: [String: EasyStyle] = [:]
     
     subscript(key: String) -> EasyStyle? {
-        let contains = registeredStyles.contains { $0.0 == key }
+        let trimKey = key.trim()
+        let contains = registeredStyles.contains { $0.0 == trimKey }
         if contains {
-            return registeredStyles[key]
+            return registeredStyles[trimKey]
         }
         return nil
     }
     
     func registerStyle(key: String, style: EasyStyle) {
-        registeredStyles[key] = style
+        let trimKey = key.trim()
+        registeredStyles[trimKey] = style
     }
     
     func unregisterStyleWithKey(key: String) {
-        registeredStyles.removeValueForKey("key")
+        let trimKey = key.trim()
+        registeredStyles.removeValueForKey(trimKey)
     }
 }
