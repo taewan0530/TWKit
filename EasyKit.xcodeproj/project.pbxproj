@@ -69,13 +69,13 @@
 		327A6DEF1CC9BFA600BB9743 /* EasyKit */ = {
 			isa = PBXGroup;
 			children = (
+				328885D61CCF6D6B00AFC920 /* StyleGenerator.swift */,
 				327A6DF01CC9BFA600BB9743 /* AppDelegate.swift */,
 				327A6DF21CC9BFA600BB9743 /* ViewController.swift */,
 				327A6DF41CC9BFA600BB9743 /* Main.storyboard */,
 				327A6DF71CC9BFA600BB9743 /* Assets.xcassets */,
 				327A6DF91CC9BFA600BB9743 /* LaunchScreen.storyboard */,
 				327A6DFC1CC9BFA600BB9743 /* Info.plist */,
-				328885D61CCF6D6B00AFC920 /* StyleGenerator.swift */,
 			);
 			path = EasyKit;
 			sourceTree = "<group>";
