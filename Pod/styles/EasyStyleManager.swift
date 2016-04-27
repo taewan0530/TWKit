@@ -22,20 +22,23 @@ public class EasyStyleManager {
     }
     
     private(set) var registeredStyles: [String: EasyStyle] = [:]
-    
+
     public subscript(key: String) -> EasyStyle? {
-        let contains = registeredStyles.contains { $0.0 == key }
+        let trimKey = key.trim()
+        let contains = registeredStyles.contains { $0.0 == trimKey }
         if contains {
-            return registeredStyles[key]
+            return registeredStyles[trimKey]
         }
         return nil
     }
-    
-    public func registerStyle(key: String, style: EasyStyle) {
-        registeredStyles[key] = style
+
+    func registerStyle(key: String, style: EasyStyle) {
+        let trimKey = key.trim()
+        registeredStyles[trimKey] = style
     }
     
-    public func unregisterStyleWithKey(key: String) {
-        registeredStyles.removeValueForKey("key")
+    func unregisterStyleWithKey(key: String) {
+        let trimKey = key.trim()
+        registeredStyles.removeValueForKey(trimKey)
     }
 }

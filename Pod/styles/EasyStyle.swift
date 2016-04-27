@@ -19,8 +19,7 @@ public class EasyStyle: NSObject {
         parentStyle = parent
         configrationBlock = configration
     }
-    
-    
+        
     public class func styleWithConfigration(configration: EasyStyleConfigurationBlock) -> EasyStyle {
         return EasyStyle(parentStyle: nil, configration: configration)
     }

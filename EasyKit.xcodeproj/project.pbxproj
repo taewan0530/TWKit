@@ -14,6 +14,7 @@
 		327A6DFB1CC9BFA600BB9743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 327A6DF91CC9BFA600BB9743 /* LaunchScreen.storyboard */; };
 		327A6E061CC9C07100BB9743 /* EasyFitImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A6E051CC9C07100BB9743 /* EasyFitImageView.swift */; };
 		327A6E081CC9C0B500BB9743 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A6E071CC9C0B500BB9743 /* Array+Extension.swift */; };
+		328885D71CCF6D6B00AFC920 /* StyleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328885D61CCF6D6B00AFC920 /* StyleGenerator.swift */; };
 		328F32401CC9E55C00BB9103 /* UIView+EasyStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328F323F1CC9E55C00BB9103 /* UIView+EasyStyle.swift */; };
 		32B89CEB1CC9C2CA0069E7E3 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B89CEA1CC9C2CA0069E7E3 /* String+Extension.swift */; };
 		32B89D061CC9E1B10069E7E3 /* EasyStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B89D051CC9E1B10069E7E3 /* EasyStyle.swift */; };
@@ -30,6 +31,7 @@
 		327A6DFC1CC9BFA600BB9743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		327A6E051CC9C07100BB9743 /* EasyFitImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyFitImageView.swift; sourceTree = "<group>"; };
 		327A6E071CC9C0B500BB9743 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		328885D61CCF6D6B00AFC920 /* StyleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleGenerator.swift; sourceTree = "<group>"; };
 		328F323F1CC9E55C00BB9103 /* UIView+EasyStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+EasyStyle.swift"; sourceTree = "<group>"; };
 		32B89CEA1CC9C2CA0069E7E3 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		32B89D051CC9E1B10069E7E3 /* EasyStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyStyle.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				327A6DF71CC9BFA600BB9743 /* Assets.xcassets */,
 				327A6DF91CC9BFA600BB9743 /* LaunchScreen.storyboard */,
 				327A6DFC1CC9BFA600BB9743 /* Info.plist */,
+				328885D61CCF6D6B00AFC920 /* StyleGenerator.swift */,
 			);
 			path = EasyKit;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			files = (
 				328F32401CC9E55C00BB9103 /* UIView+EasyStyle.swift in Sources */,
 				32B89D061CC9E1B10069E7E3 /* EasyStyle.swift in Sources */,
+				328885D71CCF6D6B00AFC920 /* StyleGenerator.swift in Sources */,
 				327A6DF31CC9BFA600BB9743 /* ViewController.swift in Sources */,
 				327A6DF11CC9BFA600BB9743 /* AppDelegate.swift in Sources */,
 				327A6E061CC9C07100BB9743 /* EasyFitImageView.swift in Sources */,
