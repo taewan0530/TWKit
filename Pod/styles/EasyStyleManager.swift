@@ -21,24 +21,35 @@ public class EasyStyleManager {
         return Static.instance!
     }
     
-    private(set) var registeredStyles: [String: EasyStyle] = [:]
-
-    public subscript(key: String) -> EasyStyle? {
-        let trimKey = key.trim()
-        let contains = registeredStyles.contains { $0.0 == trimKey }
-        if contains {
-            return registeredStyles[trimKey]
+    private var registeredStyles: [String: EasyStyle] = [:]
+    
+    
+    public subscript(key: String?) -> EasyStyle? {
+        get {
+            guard let trimedKey = key?.trim else { return nil }
+            return registeredStyles[trimedKey]
         }
-        return nil
+        set {
+            guard let trimedKey = key?.trim else { return }
+            registeredStyles[trimedKey] = newValue
+        }
     }
-
+    
+    func registerStyle(key: String, parent: String? = nil, configuration: EasyStyleConfigurationBlock) {
+        self[key] = EasyStyle(parentStyle: self[parent], configration: configuration)
+    }
+    
     func registerStyle(key: String, style: EasyStyle) {
-        let trimKey = key.trim()
-        registeredStyles[trimKey] = style
+        self[key] = style
     }
     
     func unregisterStyleWithKey(key: String) {
-        let trimKey = key.trim()
-        registeredStyles.removeValueForKey(trimKey)
+        registeredStyles.removeValueForKey(key.trim)
+    }
+}
+
+private extension String {
+    var trim: String {
+        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
     }
 }

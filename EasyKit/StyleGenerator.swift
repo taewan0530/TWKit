@@ -16,31 +16,56 @@ class StyleGenerator {
         generated = true
         
         let manger = EasyStyleManager.sharedInstance
-        manger.registerStyle("sample", style: EasyStyle.init() { (view) in
-            if let label = view as? UILabel {
-                label.backgroundColor = UIColor.redColor()
-            }
-            })
         
-        manger.registerStyle("test", style: EasyStyle.init() { (view) in
+        manger.registerStyle("sample") { view in
+            if let label = view as? UILabel {
+                label.backgroundColor = UIColor.blueColor()
+            }
+        }
+        
+        manger.registerStyle("test") { view in
             if let label = view as? UILabel {
                 label.textColor = UIColor.whiteColor()
             }
-            })
+        }
+        
+        manger.registerStyle("attrString") { view in
+            if let label = view as? UILabel, text = label.text {
+                let attributeString: NSAttributedString
+                if let img = UIImage(named: "bg_2") {
+                    attributeString = text.toAttributedString([
+                            "Lab": [NSForegroundColorAttributeName : UIColor.brownColor()],
+                            "abe": [NSBackgroundColorAttributeName : UIColor.purpleColor()],
+                            "{@image}": [TWKitUIImageAttributeName: img]
+                        ])
+                    
+                } else {
+                    attributeString = text.toAttributedString([
+                        "Lab": [NSForegroundColorAttributeName : UIColor.brownColor()],
+                        "abe": [NSBackgroundColorAttributeName : UIColor.purpleColor()]
+                        ])
+                }
+                label.attributedText = attributeString
+            }
+        }
+        
     }
 }
 
 
-protocol DesignableProtocol {}
 
-extension DesignableProtocol where Self: UIView {
-    func prepareForInterfaceBuilder() {
+@IBDesignable
+class IBLabel: UILabel {
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
         StyleGenerator.generator()
     }
 }
 
 @IBDesignable
-class IBLabel: UILabel, DesignableProtocol {}
-
-@IBDesignable
-class IBButton: UIButton, DesignableProtocol {}
+class IBButton: UIButton {
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        StyleGenerator.generator()
+    }
+}

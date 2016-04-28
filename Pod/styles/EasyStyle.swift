@@ -8,11 +8,12 @@
 
 import UIKit
 
+
 public typealias EasyStyleConfigurationBlock = UIView -> Void
 
 public class EasyStyle: NSObject {
- 
-    private(set) var parentStyle: EasyStyle?
+    
+    private(set) weak var parentStyle: EasyStyle?
     private(set) var configrationBlock: EasyStyleConfigurationBlock!
     
     init(parentStyle parent: EasyStyle? = nil, configration: EasyStyleConfigurationBlock) {

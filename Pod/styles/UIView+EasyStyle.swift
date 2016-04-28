@@ -16,8 +16,7 @@ public extension UIView {
         set {
             let styles = newValue.componentsSeparatedByString(",")
             for style in styles {
-                let key = style.trim()
-                guard let easyStyle = EasyStyleManager.sharedInstance[key] else { continue }
+                guard let easyStyle = EasyStyleManager.sharedInstance[style] else { continue }
                 applyStyle(easyStyle)
             }
         }

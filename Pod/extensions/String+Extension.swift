@@ -26,11 +26,7 @@ public extension String {
         return substringWithRange(startIndex.advancedBy(r.startIndex)..<startIndex.advancedBy(r.endIndex))
     }
     
-    public func trim() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-    }
-    
-    public func toAttributedString(attributesWithKey attrs: TWKitAttributesWithKey) -> NSAttributedString{
+    public func toAttributedString(attrs: TWKitAttributesWithKey) -> NSAttributedString {
         let searchAttr = NSMutableAttributedString(string: self)
         var replacesOffset = 0
         for (key, value) in attrs {
@@ -45,16 +41,14 @@ public extension String {
                     //x는 적용해도 반응이 없네.
                     bounds.origin.y -= value[TWKitUIImageOffsetYAttributeName] as? CGFloat ?? 0
                     
-                    
                     let attachment = NSTextAttachment()
                     attachment.image = image
                     attachment.bounds = bounds
                     
                     let imageAttrString = NSAttributedString(attachment: attachment)
                     searchAttr.replaceCharactersInRange(newRange, withAttributedString: imageAttrString)
-                    
                     //range를 미리 가져오기때문에 offset으로 밀어내준다.
-                    replacesOffset += (range.length-1)
+                    replacesOffset += range.length - 1
                 } else {
                     searchAttr.addAttributes(value, range: range)
                 }

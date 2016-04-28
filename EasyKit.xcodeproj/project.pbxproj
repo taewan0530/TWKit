@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3226AE871CD084BE00E01AC9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3226AE861CD084BE00E01AC9 /* UIView+Extension.swift */; };
+		3232E2D61CD1ABDA0049EEAC /* ObjectPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3232E2D51CD1ABDA0049EEAC /* ObjectPool.swift */; };
 		327A6DF11CC9BFA600BB9743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A6DF01CC9BFA600BB9743 /* AppDelegate.swift */; };
 		327A6DF31CC9BFA600BB9743 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327A6DF21CC9BFA600BB9743 /* ViewController.swift */; };
 		327A6DF61CC9BFA600BB9743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 327A6DF41CC9BFA600BB9743 /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3226AE861CD084BE00E01AC9 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		3232E2D51CD1ABDA0049EEAC /* ObjectPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectPool.swift; sourceTree = "<group>"; };
 		327A6DED1CC9BFA600BB9743 /* EasyKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		327A6DF01CC9BFA600BB9743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		327A6DF21CC9BFA600BB9743 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3232E2D41CD1ABBD0049EEAC /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				3232E2D51CD1ABDA0049EEAC /* ObjectPool.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		327A6DE41CC9BFA600BB9743 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +95,7 @@
 		327A6E021CC9BFD400BB9743 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
+				3232E2D41CD1ABBD0049EEAC /* utils */,
 				32B89D041CC9E1A10069E7E3 /* styles */,
 				327A6E091CC9C0BD00BB9743 /* extensions */,
 				327A6E041CC9BFD400BB9743 /* views */,
@@ -103,6 +116,7 @@
 			children = (
 				327A6E071CC9C0B500BB9743 /* Array+Extension.swift */,
 				32B89CEA1CC9C2CA0069E7E3 /* String+Extension.swift */,
+				3226AE861CD084BE00E01AC9 /* UIView+Extension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -193,9 +207,11 @@
 				328885D71CCF6D6B00AFC920 /* StyleGenerator.swift in Sources */,
 				327A6DF31CC9BFA600BB9743 /* ViewController.swift in Sources */,
 				327A6DF11CC9BFA600BB9743 /* AppDelegate.swift in Sources */,
+				3232E2D61CD1ABDA0049EEAC /* ObjectPool.swift in Sources */,
 				327A6E061CC9C07100BB9743 /* EasyFitImageView.swift in Sources */,
 				32B89CEB1CC9C2CA0069E7E3 /* String+Extension.swift in Sources */,
 				327A6E081CC9C0B500BB9743 /* Array+Extension.swift in Sources */,
+				3226AE871CD084BE00E01AC9 /* UIView+Extension.swift in Sources */,
 				32B89D081CC9E1ED0069E7E3 /* EasyStyleManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
