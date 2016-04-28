@@ -26,13 +26,13 @@
 /* Begin PBXFileReference section */
 		3226AE861CD084BE00E01AC9 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		3232E2D51CD1ABDA0049EEAC /* ObjectPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectPool.swift; sourceTree = "<group>"; };
-		327A6DED1CC9BFA600BB9743 /* EasyKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		327A6DED1CC9BFA600BB9743 /* TWKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TWKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		327A6DF01CC9BFA600BB9743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		327A6DF21CC9BFA600BB9743 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		327A6DF51CC9BFA600BB9743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		327A6DF71CC9BFA600BB9743 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		327A6DFA1CC9BFA600BB9743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		327A6DFC1CC9BFA600BB9743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		327A6DFC1CC9BFA600BB9743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		327A6E051CC9C07100BB9743 /* EasyFitImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyFitImageView.swift; sourceTree = "<group>"; };
 		327A6E071CC9C0B500BB9743 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		328885D61CCF6D6B00AFC920 /* StyleGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleGenerator.swift; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				327A6E021CC9BFD400BB9743 /* Pod */,
-				327A6DEF1CC9BFA600BB9743 /* EasyKit */,
+				327A6DEF1CC9BFA600BB9743 /* TWKit */,
 				327A6DEE1CC9BFA600BB9743 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,12 +73,12 @@
 		327A6DEE1CC9BFA600BB9743 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				327A6DED1CC9BFA600BB9743 /* EasyKit.app */,
+				327A6DED1CC9BFA600BB9743 /* TWKitDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		327A6DEF1CC9BFA600BB9743 /* EasyKit */ = {
+		327A6DEF1CC9BFA600BB9743 /* TWKit */ = {
 			isa = PBXGroup;
 			children = (
 				328885D61CCF6D6B00AFC920 /* StyleGenerator.swift */,
@@ -89,7 +89,7 @@
 				327A6DF91CC9BFA600BB9743 /* LaunchScreen.storyboard */,
 				327A6DFC1CC9BFA600BB9743 /* Info.plist */,
 			);
-			path = EasyKit;
+			path = TWKit;
 			sourceTree = "<group>";
 		};
 		327A6E021CC9BFD400BB9743 /* Pod */ = {
@@ -134,9 +134,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		327A6DEC1CC9BFA600BB9743 /* EasyKit */ = {
+		327A6DEC1CC9BFA600BB9743 /* TWKitDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 327A6DFF1CC9BFA600BB9743 /* Build configuration list for PBXNativeTarget "EasyKit" */;
+			buildConfigurationList = 327A6DFF1CC9BFA600BB9743 /* Build configuration list for PBXNativeTarget "TWKitDemo" */;
 			buildPhases = (
 				327A6DE91CC9BFA600BB9743 /* Sources */,
 				327A6DEA1CC9BFA600BB9743 /* Frameworks */,
@@ -146,9 +146,9 @@
 			);
 			dependencies = (
 			);
-			name = EasyKit;
+			name = TWKitDemo;
 			productName = EasyKit;
-			productReference = 327A6DED1CC9BFA600BB9743 /* EasyKit.app */;
+			productReference = 327A6DED1CC9BFA600BB9743 /* TWKitDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -166,7 +166,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 327A6DE81CC9BFA600BB9743 /* Build configuration list for PBXProject "EasyKit" */;
+			buildConfigurationList = 327A6DE81CC9BFA600BB9743 /* Build configuration list for PBXProject "TWKitDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -179,7 +179,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				327A6DEC1CC9BFA600BB9743 /* EasyKit */,
+				327A6DEC1CC9BFA600BB9743 /* TWKitDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -325,10 +325,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = EasyKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TWKit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.taewan.EasyKit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.taewan.TWKitDemo;
+				PRODUCT_NAME = TWKitDemo;
 			};
 			name = Debug;
 		};
@@ -336,17 +336,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = EasyKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TWKit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kr.co.taewan.EasyKit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.taewan.TWKitDemo;
+				PRODUCT_NAME = TWKitDemo;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		327A6DE81CC9BFA600BB9743 /* Build configuration list for PBXProject "EasyKit" */ = {
+		327A6DE81CC9BFA600BB9743 /* Build configuration list for PBXProject "TWKitDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				327A6DFD1CC9BFA600BB9743 /* Debug */,
@@ -355,7 +355,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		327A6DFF1CC9BFA600BB9743 /* Build configuration list for PBXNativeTarget "EasyKit" */ = {
+		327A6DFF1CC9BFA600BB9743 /* Build configuration list for PBXNativeTarget "TWKitDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				327A6E001CC9BFA600BB9743 /* Debug */,
