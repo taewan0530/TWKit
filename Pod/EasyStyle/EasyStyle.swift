@@ -15,7 +15,7 @@ public class EasyStyle: NSObject {
     private(set) weak var parentStyle: EasyStyle?
     private(set) var configrationBlock: ConfigurationBlock!
 
-    init(parentStyle parent: EasyStyle? = nil, configration: ConfigurationBlock) {
+    public init(parentStyle parent: EasyStyle? = nil, configration: ConfigurationBlock) {
         parentStyle = parent
         configrationBlock = configration
     }

@@ -17,7 +17,7 @@ public class ObjectPool<T>: NSObject {
 
     private var generatorBlock: GeneratorBlock?
 
-    init(generatorBlock block: GeneratorBlock? = nil) {
+    public init(generatorBlock block: GeneratorBlock? = nil) {
         generatorBlock = block
         super.init()
     }

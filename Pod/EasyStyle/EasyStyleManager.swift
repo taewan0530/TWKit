@@ -41,15 +41,15 @@ public class EasyStyleManager {
         }
     }
 
-    func registerStyle(key: String, parent: String? = nil, configuration: EasyStyle.ConfigurationBlock) {
+    public func registerStyle(key: String, parent: String? = nil, configuration: EasyStyle.ConfigurationBlock) {
         self[key] = EasyStyle(parentStyle: self[parent], configration: configuration)
     }
 
-    func registerStyle(key: String, style: EasyStyle) {
+    public func registerStyle(key: String, style: EasyStyle) {
         self[key] = style
     }
 
-    func unregisterStyleWithKey(key: String) {
+    public func unregisterStyleWithKey(key: String) {
         registeredStyles.removeValueForKey(key.trim)
     }
 }
