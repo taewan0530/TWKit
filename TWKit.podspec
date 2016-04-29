@@ -17,7 +17,11 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Extension' do |sub|
-    sub.source_files = Pod/extensions/*.{swift}'
+    sub.source_files = 'Pod/extensions/*.{swift}'
+  end
+
+  s.subspec 'Function' do |sub|
+    sub.source_files = 'Pod/utils/Functions.{swift}'
   end
 
   s.subspec 'ObjectPool' do |sub|
@@ -29,15 +33,15 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'EasyStyle' do |sub|
-    sub.source_files = Pod/EasyStyle/*.{swift}'
+    sub.source_files = 'Pod/EasyStyle/*.{swift}'
   end
 
   s.subspec 'AttributedString' do |sub|
-    sub.source_files = Pod/AttributedString/*.{swift}'
+    sub.source_files = 'Pod/AttributedString/*.{swift}'
   end
 
   s.subspec 'GetConstraint' do |sub|
-    sub.source_files = Pod/GetConstraint/*.{swift}'
+    sub.source_files = 'Pod/GetConstraint/*.{swift}'
   end
 
   s.default_subspec = 'All'
