@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Function' do |sub|
-    sub.source_files = 'Pod/utils/Functions.{swift}'
+    sub.source_files = 'Pod/utils/Functions.swift'
   end
 
   s.subspec 'ObjectPool' do |sub|
