@@ -12,19 +12,19 @@ import UIKit
 public typealias EasyStyleConfigurationBlock = UIView -> Void
 
 public class EasyStyle: NSObject {
-    
+
     private(set) weak var parentStyle: EasyStyle?
     private(set) var configrationBlock: EasyStyleConfigurationBlock!
-    
+
     init(parentStyle parent: EasyStyle? = nil, configration: EasyStyleConfigurationBlock) {
         parentStyle = parent
         configrationBlock = configration
     }
-        
+
     public class func styleWithConfigration(configration: EasyStyleConfigurationBlock) -> EasyStyle {
         return EasyStyle(parentStyle: nil, configration: configration)
     }
-    
+
     public class func styleWithParent(parent: EasyStyle, configration: EasyStyleConfigurationBlock) -> EasyStyle {
         return EasyStyle(parentStyle: parent, configration: configration)
     }

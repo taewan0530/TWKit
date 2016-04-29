@@ -13,12 +13,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: IBLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+
+        let stobjc = StructObject(CGRectMake(0,0,10,10))
+        let a = stobjc as AnyObject
+        
+        let url = StructObject<NSURL>.from(a)
+        print(url)
+        let rect = StructObject<CGRect>.from(a)
+        print(rect)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func currentTimeMillis() -> Int64{

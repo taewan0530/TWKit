@@ -12,11 +12,15 @@ import UIKit
 public extension UIView {
     @IBInspectable
     public var easyStyle: String {
-        get { return "support only setter" }
+        get {
+            return "support only setter"
+        }
         set {
             let styles = newValue.componentsSeparatedByString(",")
             for style in styles {
-                guard let easyStyle = EasyStyleManager.sharedInstance[style] else { continue }
+                guard let easyStyle = EasyStyleManager.sharedInstance[style] else {
+                    continue
+                }
                 applyStyle(easyStyle)
             }
         }

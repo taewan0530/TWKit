@@ -12,21 +12,33 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.ios.deployment_target = '8.0'
 
-  s.subspec 'Default' do |sub|
+  s.subspec 'All' do |sub|
     sub.source_files = 'Pod/**/*.{swift}'
-  end
-
-  s.subspec 'ObjectPool' do |sub|
-    sub.source_files = 'Pod/utils/ObjectPool.swift'
-  end
-
-  s.subspec 'Style' do |sub|
-    sub.source_files = Pod/styles/*.{swift}'
   end
 
   s.subspec 'Extension' do |sub|
     sub.source_files = Pod/extensions/*.{swift}'
   end
 
-  s.default_subspec = 'Default'
+  s.subspec 'ObjectPool' do |sub|
+    sub.source_files = 'Pod/utils/ObjectPool.swift'
+  end
+
+  s.subspec 'StructObject' do |sub|
+    sub.source_files = 'Pod/utils/StructObject.swift'
+  end
+
+  s.subspec 'EasyStyle' do |sub|
+    sub.source_files = Pod/EasyStyle/*.{swift}'
+  end
+
+  s.subspec 'AttributedString' do |sub|
+    sub.source_files = Pod/AttributedString/*.{swift}'
+  end
+
+  s.subspec 'GetConstraint' do |sub|
+    sub.source_files = Pod/GetConstraint/*.{swift}'
+  end
+
+  s.default_subspec = 'All'
 end

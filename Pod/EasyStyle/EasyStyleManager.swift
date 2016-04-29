@@ -11,38 +11,44 @@ import Foundation
 
 public class EasyStyleManager {
     public class var sharedInstance: EasyStyleManager {
+
         struct Static {
             static var onceToken: dispatch_once_t = 0
             static var instance: EasyStyleManager? = nil
         }
+
         dispatch_once(&Static.onceToken) {
             Static.instance = EasyStyleManager()
         }
         return Static.instance!
     }
-    
-    private var registeredStyles: [String: EasyStyle] = [:]
-    
-    
+
+    private var registeredStyles: [String:EasyStyle] = [:]
+
+
     public subscript(key: String?) -> EasyStyle? {
         get {
-            guard let trimedKey = key?.trim else { return nil }
+            guard let trimedKey = key?.trim else {
+                return nil
+            }
             return registeredStyles[trimedKey]
         }
         set {
-            guard let trimedKey = key?.trim else { return }
+            guard let trimedKey = key?.trim else {
+                return
+            }
             registeredStyles[trimedKey] = newValue
         }
     }
-    
+
     func registerStyle(key: String, parent: String? = nil, configuration: EasyStyleConfigurationBlock) {
         self[key] = EasyStyle(parentStyle: self[parent], configration: configuration)
     }
-    
+
     func registerStyle(key: String, style: EasyStyle) {
         self[key] = style
     }
-    
+
     func unregisterStyleWithKey(key: String) {
         registeredStyles.removeValueForKey(key.trim)
     }
