@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+
+//example EasyStyle
 class StyleGenerator {
     static private var generated = false
     class func generator() {
@@ -28,27 +30,6 @@ class StyleGenerator {
                 label.textColor = UIColor.whiteColor()
             }
         }
-        
-        manger.registerStyle("attrString") { view in
-            if let label = view as? UILabel, text = label.text {
-                let attributeString: NSAttributedString
-                if let img = UIImage(named: "bg_2") {
-                    attributeString = text.toAttributedString([
-                            "Lab": [NSForegroundColorAttributeName : UIColor.brownColor()],
-                            "abe": [NSBackgroundColorAttributeName : UIColor.purpleColor()],
-                            "{@image}": [TWKitUIImageAttributeName: img]
-                        ])
-                    
-                } else {
-                    attributeString = text.toAttributedString([
-                        "Lab": [NSForegroundColorAttributeName : UIColor.brownColor()],
-                        "abe": [NSBackgroundColorAttributeName : UIColor.purpleColor()]
-                        ])
-                }
-                label.attributedText = attributeString
-            }
-        }
-        
     }
 }
 

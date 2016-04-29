@@ -1,7 +1,8 @@
 //
 //  ObjectPool.swift
-//  EasyKit
+//  TWKit
 //
+//  객체 재사용시 사용하면 유용함.
 //  Created by kimtaewan on 2016. 4. 28..
 //  Copyright © 2016년 taewan. All rights reserved.
 //

@@ -12,7 +12,6 @@ public typealias TWKitAttributesWithKey = [String:[String:AnyObject]]
 public let TWKitUIImageAttributeName: String = "TWKitUIImageAttributeName"
 public let TWKitUIImageOffsetYAttributeName: String = "TWKitUIImageOffsetYAttributeName"
 
-
 public extension String {
     public func toAttributedString(attrs: TWKitAttributesWithKey) -> NSAttributedString {
         let searchAttr = NSMutableAttributedString(string: self)

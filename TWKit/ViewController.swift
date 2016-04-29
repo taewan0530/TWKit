@@ -9,28 +9,66 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var label: IBLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        exampleStructObject()
+        exampleAttributedString()
+        exampleExtensionArray()
+    }
+    
+    @IBAction func didTapChangeConstraint(sender: AnyObject) {
+        print("======= exampleGetConstraint =======")
+        let topConstraint = label.getConstraint(attribute: .Top)
+        let beforeConstant = topConstraint?.constant ?? 0
+        topConstraint?.constant = beforeConstant == 0 ? 70 : 0
+    }
+    
+    func exampleStructObject() {
+        print("======= exampleStructObject =======")
         let stobjc = StructObject(CGRectMake(0,0,10,10))
         let a = stobjc as AnyObject
         
         let url = StructObject<NSURL>.from(a)
-        print(url)
+        print("StructObject as NSURL is: \(url)")
         let rect = StructObject<CGRect>.from(a)
-        print(rect)
+        print("StructObject as CGRect is: \(rect)")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    func exampleAttributedString() {
+        guard let text = label.text else { return }
+         print("======= exampleAttributedString =======")
+        
+        let attributeString: NSAttributedString
+        if let img = UIImage(named: "bg_2") {
+            attributeString = text.toAttributedString([
+                "Lab": [NSForegroundColorAttributeName : UIColor.brownColor()],
+                "abe": [NSBackgroundColorAttributeName : UIColor.purpleColor()],
+                "{@image}": [TWKitUIImageAttributeName: img]
+                ])
+            
+        } else {
+            attributeString = text.toAttributedString([
+                "Lab": [NSForegroundColorAttributeName : UIColor.brownColor()],
+                "abe": [NSBackgroundColorAttributeName : UIColor.purpleColor()]
+                ])
+        }
+        label.attributedText = attributeString
     }
-
-    func currentTimeMillis() -> Int64{
-        let nowDouble = NSDate().timeIntervalSince1970
-        return Int64(nowDouble*1000)
+    
+    func exampleExtensionArray() {
+        print("======= exampleExtensionArray =======")
+        var testArray = [Int](count: 5, repeatedValue: 0)
+        for i in 0..<testArray.count {
+            testArray[i] = i
+        }
+        
+        for i in 0...10 {
+            print("testArray[\(i)]: \(testArray[safe: i])")
+        }
     }
-
 }
 

@@ -5,7 +5,6 @@
 
 import UIKit
 
-
 class KeyboardHelper: NSObject {
 
     enum Status {
@@ -36,7 +35,6 @@ class KeyboardHelper: NSObject {
 
 
 //MARK - actions
-
 private extension KeyboardHelper {
     func addEvents() {
         guard let scrollView = scrollView else {

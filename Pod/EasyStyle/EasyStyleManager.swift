@@ -41,7 +41,7 @@ public class EasyStyleManager {
         }
     }
 
-    func registerStyle(key: String, parent: String? = nil, configuration: EasyStyleConfigurationBlock) {
+    func registerStyle(key: String, parent: String? = nil, configuration: EasyStyle.ConfigurationBlock) {
         self[key] = EasyStyle(parentStyle: self[parent], configration: configuration)
     }
 
