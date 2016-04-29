@@ -17,19 +17,19 @@ TWKit is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "TWKit"
+pod 'TWKit'
 ```
 
 OR
 
 ```ruby
-pod "TWKit/Extension"
-pod "TWKit/Function"
-pod "TWKit/ObjectPool"
-pod "TWKit/StructObject"
-pod "TWKit/EasyStyle"
-pod "TWKit/AttributedString"
-pod "TWKit/GetConstraint"
+pod 'TWKit/Extension'
+pod 'TWKit/Function'
+pod 'TWKit/ObjectPool'
+pod 'TWKit/StructObject'
+pod 'TWKit/EasyStyle'
+pod 'TWKit/AttributedString'
+pod 'TWKit/GetConstraint'
 ```
 
 ## Author
