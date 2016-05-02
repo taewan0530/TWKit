@@ -44,5 +44,9 @@ Pod::Spec.new do |s|
     sub.source_files = 'Pod/GetConstraint/*.{swift}'
   end
 
+  s.subspec 'KeyboardHelper' do |sub|
+    sub.source_files = 'Pod/KeyboardHelper/*.{swift}'
+  end
+
   s.default_subspec = 'All'
 end

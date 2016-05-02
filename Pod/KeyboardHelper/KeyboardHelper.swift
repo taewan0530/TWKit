@@ -22,7 +22,7 @@ public class KeyboardHelper: NSObject {
 
     public var baseLineSpace: CGFloat = 0
 
-    public init(scrollView: UIScrollView) {
+    public init(scrollView: UIScrollView?) {
         super.init()
         self.scrollView = scrollView
         addEvents()
@@ -68,8 +68,8 @@ private extension KeyboardHelper {
         }
         status = .Show
 
-        defaultInset.bottom = scrollView!.contentInset.bottom
-        defaultInset.indicatorBottom = scrollView!.scrollIndicatorInsets.bottom
+        defaultInset.bottom = scrollView?.contentInset.bottom ?? 0
+        defaultInset.indicatorBottom = scrollView?.scrollIndicatorInsets.bottom ?? 0
 
         let keyboardHeight = getKeyboardHeight(notification: notification)
 
@@ -98,8 +98,8 @@ private extension KeyboardHelper {
         }
         status = .Hide
 
-        scrollView!.contentInset.bottom = defaultInset.bottom
-        scrollView!.scrollIndicatorInsets.bottom = defaultInset.indicatorBottom
+        scrollView?.contentInset.bottom = defaultInset.bottom
+        scrollView?.scrollIndicatorInsets.bottom = defaultInset.indicatorBottom
     }
 
     func findActiveResponderFrame(view: UIView) -> UIView? {
