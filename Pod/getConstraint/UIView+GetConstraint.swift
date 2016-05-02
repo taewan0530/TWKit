@@ -25,7 +25,11 @@ public extension UIView {
     }
 
     public func getConstraint(attribute attr1: NSLayoutAttribute) -> NSLayoutConstraint? {
-        return getConstraints(attribute: attr1).first
+        let constrinsts = getConstraints(attribute: attr1)
+//        if constrinsts.count == 1 {
+//            return constrinsts.first
+//        }
+        return constrinsts.maxElement { $0.0.priority < $0.1.priority }
     }
 
     public func getConstraints(attribute attr1: NSLayoutAttribute, toItem view2: AnyObject? = nil, attribute attr2: NSLayoutAttribute? = nil) -> [NSLayoutConstraint] {
@@ -35,15 +39,26 @@ public extension UIView {
     public func getConstraints(item view1: AnyObject, attribute attr1: NSLayoutAttribute, toItem view2: AnyObject? = nil, attribute attr2: NSLayoutAttribute? = nil, withSuperview: Bool = true) -> [NSLayoutConstraint] {
         var results: [NSLayoutConstraint] = []
 
-        if let superview = self.superview
-        where withSuperview {
-            results += superview.getConstraints(item: view1, attribute: attr1, toItem: view2, attribute: attr2, withSuperview: false)
-        }
+//        if let superview = self.superview
+//        where withSuperview {
+//            results += superview.getConstraints(item: view1, attribute: attr1, toItem: view2, attribute: attr2, withSuperview: false)
+//        }
 
+        print("view:\(view1),attr1: \(attr1.rawValue)\n\n")
         for constraint in self.constraints {
-            guard constraint.firstItem === view1 && constraint.firstAttribute == attr1 else {
+//            print(constraint.description)
+            //부모뷰에서 찾을때는 다르게 순서 바꿔야할듯
+            //constraint.firstItem === view1 && 
+            guard constraint.firstAttribute == attr1 || constraint.secondAttribute == attr1 else {
                 continue
             }
+            
+            if constraint.constant == 27 || constraint.constant == 10 {
+                
+                print("constant:\(constraint.constant),\nfirstItem:\(constraint.firstItem):attr\(constraint.firstAttribute.rawValue)\n,secoundItem:\(constraint.secondItem):attr\(constraint.secondAttribute.rawValue)")
+            }
+            
+            
             if view2 == nil && attr2 == nil {
                 results.append(constraint)
             } else if constraint.secondItem === view2 && constraint.secondAttribute == attr2 {

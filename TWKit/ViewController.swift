@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var label: IBLabel!
+    @IBOutlet weak var buttonButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,9 +24,16 @@ class ViewController: UIViewController {
     
     @IBAction func didTapChangeConstraint(sender: AnyObject) {
         print("======= exampleGetConstraint =======")
-        let topConstraint = label.getConstraint(attribute: .Top)
-        let beforeConstant = topConstraint?.constant ?? 0
-        topConstraint?.constant = beforeConstant == 0 ? 70 : 0
+//        let topConstraint = label.getConstraint(attribute: .Top)
+//        let beforeConstant = topConstraint?.constant ?? 0
+//        topConstraint?.constant = beforeConstant == 0 ? 70 : 0
+        
+        
+        buttonButton.superview?.getConstraints(attribute: .Bottom)
+//        print(buttonButton.getConstraints(attribute: .Bottom))
+//        print(buttonButton.getConstraints(item: buttonButton, attribute: .Bottom, toItem: nil, attribute: nil, withSuperview: false))
+//        print(buttonButton.superview?.getConstraints(item: self.view, attribute: .Bottom, toItem: nil, attribute: nil, withSuperview: false))
+//        print(buttonButton.getConstraint(attribute: .Bottom))
     }
     
     func exampleStructObject() {
