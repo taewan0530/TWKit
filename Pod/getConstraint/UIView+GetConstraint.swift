@@ -24,49 +24,62 @@ public extension UIView {
         return nil
     }
 
-    public func getConstraint(attribute attr1: NSLayoutAttribute) -> NSLayoutConstraint? {
-        let constrinsts = getConstraints(attribute: attr1)
-//        if constrinsts.count == 1 {
-//            return constrinsts.first
-//        }
-        return constrinsts.maxElement { $0.0.priority < $0.1.priority }
+    public func getConstraint(attribute attr: NSLayoutAttribute) -> NSLayoutConstraint? {
+        let constrinsts = getConstraints(attribute: attr)
+        if constrinsts.count == 1 {
+            return constrinsts.first
+        }
+        //active deactive도 확인한번 해줄까.
+        return constrinsts.maxElement {
+             $0.0.priority < $0.1.priority
+        }
     }
 
-    public func getConstraints(attribute attr1: NSLayoutAttribute, toItem view2: AnyObject? = nil, attribute attr2: NSLayoutAttribute? = nil) -> [NSLayoutConstraint] {
-        return getConstraints(item: self, attribute: attr1, toItem: view2, attribute: attr2)
+    public func getConstraints(attribute attr: NSLayoutAttribute) -> [NSLayoutConstraint] {
+        return getConstraints(item: self, attribute: attr)
     }
 
-    public func getConstraints(item view1: AnyObject, attribute attr1: NSLayoutAttribute, toItem view2: AnyObject? = nil, attribute attr2: NSLayoutAttribute? = nil, withSuperview: Bool = true) -> [NSLayoutConstraint] {
+    public func getConstraints(item view: AnyObject, attribute attr: NSLayoutAttribute) -> [NSLayoutConstraint] {
         var results: [NSLayoutConstraint] = []
 
-//        if let superview = self.superview
-//        where withSuperview {
-//            results += superview.getConstraints(item: view1, attribute: attr1, toItem: view2, attribute: attr2, withSuperview: false)
-//        }
-
-        print("view:\(view1),attr1: \(attr1.rawValue)\n\n")
-        for constraint in self.constraints {
-//            print(constraint.description)
-            //부모뷰에서 찾을때는 다르게 순서 바꿔야할듯
-            //constraint.firstItem === view1 && 
-            guard constraint.firstAttribute == attr1 || constraint.secondAttribute == attr1 else {
+        if let superview = self.superview {
+            results += UIView.targetFromConstraints(superview, item: view, attribute: attr)
+        }
+        results += UIView.targetFromConstraints(self, item: view, attribute: attr)
+        
+        return results
+    }
+    
+    
+    private class func targetFromConstraints(target: AnyObject, item view: AnyObject, attribute attr: NSLayoutAttribute) -> [NSLayoutConstraint] {
+        var results: [NSLayoutConstraint] = []
+        
+        for constraint in target.constraints {
+            if "NSContentSizeLayoutConstraint" == classNameAsString(constraint) {
                 continue
             }
             
-            if constraint.constant == 27 || constraint.constant == 10 {
-                
-                print("constant:\(constraint.constant),\nfirstItem:\(constraint.firstItem):attr\(constraint.firstAttribute.rawValue)\n,secoundItem:\(constraint.secondItem):attr\(constraint.secondAttribute.rawValue)")
+            let targetAttribute: NSLayoutAttribute
+            let targetView: AnyObject?
+            
+            if "_UILayoutGuide" == classNameAsString(constraint.firstItem) {
+                targetAttribute = constraint.secondAttribute
+                targetView = constraint.secondItem
+            } else {
+                targetAttribute = constraint.firstAttribute
+                targetView = constraint.firstItem
             }
             
-            
-            if view2 == nil && attr2 == nil {
-                results.append(constraint)
-            } else if constraint.secondItem === view2 && constraint.secondAttribute == attr2 {
-                results.append(constraint)
-            } else if constraint.secondItem === view2 && attr2 == nil {
-                results.append(constraint)
+            guard targetAttribute == attr && targetView === view else {
+                continue
             }
+            results.append(constraint)
         }
         return results
+    }
+
+
+    private class func classNameAsString(obj: Any) -> String {
+        return String(obj.dynamicType).componentsSeparatedByString("__").last!
     }
 }

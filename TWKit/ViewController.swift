@@ -13,6 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: IBLabel!
     @IBOutlet weak var buttonButton: UIButton!
     
+    @IBOutlet weak var labelButton: UIButton!
+    
+    @IBOutlet var labels: [UILabel]!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,18 +25,22 @@ class ViewController: UIViewController {
         exampleExtensionArray()
     }
     
+    @IBAction func didTapChangeLabelConstraint(sender: AnyObject) {  
+        for ll in labels {
+            print(ll.getConstraints(attribute: .CenterY))
+            print(ll.getConstraints(attribute: .Height))
+        }
+    }
+    
     @IBAction func didTapChangeConstraint(sender: AnyObject) {
         print("======= exampleGetConstraint =======")
-//        let topConstraint = label.getConstraint(attribute: .Top)
-//        let beforeConstant = topConstraint?.constant ?? 0
-//        topConstraint?.constant = beforeConstant == 0 ? 70 : 0
+        let topConstraint = label.getConstraint(attribute: .Top)
+        let beforeConstant = topConstraint?.constant ?? 0
+        topConstraint?.constant = beforeConstant == 0 ? 70 : 0
         
         
-        buttonButton.superview?.getConstraints(attribute: .Bottom)
-//        print(buttonButton.getConstraints(attribute: .Bottom))
-//        print(buttonButton.getConstraints(item: buttonButton, attribute: .Bottom, toItem: nil, attribute: nil, withSuperview: false))
-//        print(buttonButton.superview?.getConstraints(item: self.view, attribute: .Bottom, toItem: nil, attribute: nil, withSuperview: false))
-//        print(buttonButton.getConstraint(attribute: .Bottom))
+        print(buttonButton.getConstraints(item: buttonButton, attribute: .Bottom))
+        print(buttonButton.getConstraint(attribute: .Bottom))
     }
     
     func exampleStructObject() {
