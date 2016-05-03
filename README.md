@@ -30,6 +30,7 @@ pod 'TWKit/StructObject'
 pod 'TWKit/EasyStyle'
 pod 'TWKit/AttributedString'
 pod 'TWKit/GetConstraint'
+pod 'TWKit/KeyboardHelper'
 ```
 
 ## Author
@@ -40,3 +41,11 @@ taewankim, taewan0530@daum.net
 
 MIT
 
+
+### References
+
+Inspired by projects: 
+- https://github.com/ManueGE/MGEStyles
+- https://github.com/dzog/ImgGlyph
+- http://stackoverflow.com/questions/25329186/safe-bounds-checked-array-lookup-in-swift-through-optional-bindings#answer-30593673
+- http://ufx.kr/blog/591
