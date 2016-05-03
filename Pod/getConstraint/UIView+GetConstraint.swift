@@ -60,17 +60,21 @@ public extension UIView {
             }
             
             let targetAttribute: NSLayoutAttribute
-            let targetView: AnyObject?
             
             if "_UILayoutGuide" == classNameAsString(constraint.firstItem) {
                 targetAttribute = constraint.secondAttribute
-                targetView = constraint.secondItem
             } else {
                 targetAttribute = constraint.firstAttribute
-                targetView = constraint.firstItem
             }
             
-            guard targetAttribute == attr && targetView === view else {
+            /*
+             Leading, Trailing 어떤 NSLayoutAttribute따라서 firstItem 이랑 secondItem 다를 수 있다.
+             두가지를 모두 비교해주자.
+             */
+            let itemEqual = (constraint.firstItem === view && constraint.secondItem === target)
+            let reverseItemEqual = (constraint.secondItem === view && constraint.firstItem === target)
+            
+            guard targetAttribute == attr && (itemEqual || reverseItemEqual) else {
                 continue
             }
             results.append(constraint)
