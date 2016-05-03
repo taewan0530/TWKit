@@ -12,6 +12,8 @@
 import UIKit
 
 public extension UIView {
+  
+    
     public func getConstraint(identifier: String) -> NSLayoutConstraint? {
         if let superview = self.superview {
             for constraint in superview.constraints where constraint.identifier == identifier {
@@ -39,19 +41,19 @@ public extension UIView {
         return getConstraints(item: self, attribute: attr)
     }
 
-    public func getConstraints(item view: AnyObject, attribute attr: NSLayoutAttribute) -> [NSLayoutConstraint] {
+    public func getConstraints(item view: AnyObject, attribute attr1: NSLayoutAttribute) -> [NSLayoutConstraint] {
         var results: [NSLayoutConstraint] = []
 
         if let superview = self.superview {
-            results += UIView.targetFromConstraints(superview, item: view, attribute: attr)
+            results += UIView.targetFromConstraints(superview, item: view, attribute: attr1)
         }
-        results += UIView.targetFromConstraints(self, item: view, attribute: attr)
+        results += UIView.targetFromConstraints(self, item: view, attribute: attr1)
         
         return results
     }
     
     
-    private class func targetFromConstraints(target: AnyObject, item view: AnyObject, attribute attr: NSLayoutAttribute) -> [NSLayoutConstraint] {
+    private class func targetFromConstraints(target: AnyObject, item view: AnyObject?, attribute attr: NSLayoutAttribute) -> [NSLayoutConstraint] {
         var results: [NSLayoutConstraint] = []
         
         for constraint in target.constraints {
@@ -66,17 +68,22 @@ public extension UIView {
             } else {
                 targetAttribute = constraint.firstAttribute
             }
+         
+            let firstItemEqual: Bool
+            let secondItemEqual: Bool
             
-            /*
-             Leading, Trailing 어떤 NSLayoutAttribute따라서 firstItem 이랑 secondItem 다를 수 있다.
-             두가지를 모두 비교해주자.
-             */
-            let itemEqual = (constraint.firstItem === view && constraint.secondItem === target)
-            let reverseItemEqual = (constraint.secondItem === view && constraint.firstItem === target)
+            if view == nil {
+                firstItemEqual =  constraint.secondItem === target
+                secondItemEqual = constraint.firstItem === target
+            } else {
+                firstItemEqual = constraint.firstItem === view
+                secondItemEqual = constraint.secondItem === view
+            }
             
-            guard targetAttribute == attr && (itemEqual || reverseItemEqual) else {
+            guard targetAttribute == attr && (firstItemEqual || secondItemEqual) else {
                 continue
             }
+            
             results.append(constraint)
         }
         return results
