@@ -45,18 +45,20 @@ manger.registerStyle("test") { view in
 }
 ```
 
-####Applying Styles:
+####Applying Styles
 
-#####Interface Builder:
+By Interface Builder
 ![Alt text](imgs/easystyle_01.png)
 
-#####Code:
+By Code
 ```swift
 view.easyStyle = "test, sample"
 ```
 
-#####Result:
+Result
 ![Alt text](imgs/easystyle_02.png)
+
+
 
 
 
