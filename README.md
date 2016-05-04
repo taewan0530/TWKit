@@ -48,7 +48,7 @@ manger.registerStyle("test") { view in
 ####Applying Styles
 
 By Interface Builder
-![](imgs/easystyle_01.png)
+![](imgs/easystyle_01.png?raw=true)
 
 By Code
 ```swift
@@ -56,7 +56,7 @@ view.easyStyle = "test, sample"
 ```
 
 Result
-![](imgs/easystyle_02.png)
+![](imgs/easystyle_02.png?raw=true)
 
 
 
