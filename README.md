@@ -23,8 +23,8 @@ pod 'TWKit/AttributedString'
 pod 'TWKit/KeyboardHelper'
 pod 'TWKit/ObjectPool'
 pod 'TWKit/StructObject'
-pod 'TWKit/Function'
 pod 'TWKit/Extension'
+pod 'TWKit/Function'
 ```
 
 
@@ -50,21 +50,23 @@ manger.registerStyle("test") { view in
 
 ###Applying Styles
 
-By Interface Builder
+####By Interface Builder
 인터페이스 빌더를 사용하면 IBOutlet을 사용할 필요가 없어서 좋다 :)
 
 ![](imgs/easystyle_01.png?raw=true)
 
 
-By Code
+####By Code
 
 ```swift
 view.easyStyle = "test, sample"
 ```
 
-Result
+####Result
 
 ![](imgs/easystyle_02.png?raw=true)
+
+
 
 
 ##GetConstraint
@@ -77,6 +79,89 @@ Left, Right 와 Leading, Trailing 다르다는것을 유의하고 사용
 let topConstraint = view.getConstraint(attribute: .Top)
 topConstraint?.constant = 20
 ```
+
+
+
+##AttributedString
+
+NSAttributedString에 쉽게 스타일을 적용할 수 있도록 개발
+
+```swift
+let text = "Label {sample} test message {icon} sample message {icon} Label"
+let attributeString: NSAttributedString = text.toAttributedString([
+    "Lab": [NSForegroundColorAttributeName : UIColor.brownColor()],
+    "a": [NSBackgroundColorAttributeName : UIColor.purpleColor()],
+    "{sample}": [TWKitUIImageAttributeName: UIImage(named: "sample")!],
+    "{icon}": [TWKitUIImageAttributeName: UIImage(named: "icon")!]
+])
+label.attributedText = attributeString
+```
+
+//결과 화면 스샷으로 추가해주자.
+
+
+
+##KeyboardHelper
+
+스크롤뷰안에 TextField 가 있을때 쉽게 contentInset를 적용
+
+```swift
+let keyboardHelper = KeyboardHelper(scrollview)
+```
+
+//결과 화면 스샷으로 추가해주자.
+
+
+
+##ObjectPool
+
+객체 재사용 쉽게 하기위해 개발
+
+```swift
+let objPool = ObjectPool<UILabel> {
+    return UILabel()
+}
+
+//객체 생성
+for i in 0..<10 {
+    let label = objPool.getInstance()    
+}
+
+//사용이 끝나면 objPool로 되돌려준다.
+for label in objPool.activeList {
+    objPool.returnInstance(label)
+}
+```
+
+
+
+##StructObject
+
+performSegueWithIdentifier(identifier:, sender:)에서 struct를 sender에 넣고 싶을때 사용!
+
+```swift
+let struct = StructObject(CGRectMake(0,0,10,10))
+let rect = StructObject<CGRect>.from(struct)
+print("StructObject as CGRect is: \(rect)")
+```
+
+
+
+##Extension
+
+Array사용시에 옵셔널로 쉽게 사용.
+
+```swift
+let arr = ["test","sample"]
+
+arr[2] //Error
+arr[safe: 2] //nil
+```
+
+
+
+
+
 
 
 

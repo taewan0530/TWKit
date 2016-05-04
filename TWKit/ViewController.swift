@@ -38,6 +38,8 @@ class ViewController: UIViewController {
         let beforeConstant = topConstraint?.constant ?? 0
         topConstraint?.constant = beforeConstant == 0 ? 70 : 0
         
+      
+        
         
         print(buttonButton.getConstraints(item: buttonButton, attribute: .Bottom))
         print(buttonButton.getConstraint(attribute: .Bottom))
