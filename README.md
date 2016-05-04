@@ -61,7 +61,17 @@ Result
 ![](imgs/easystyle_02.png?raw=true)
 
 
+###GetConstraint
 
+뷰와 코드를 IBOutlet으로 연결되어 많은 변수가 참조되는 것이 싫어서 만든 코드.
+NSLayoutAttribute를 사용.
+Left,Right 와 Leading,Trailing 다르다는것을 유의하고 사용
+
+
+```swift
+let topConstraint = view.getConstraint(attribute: .Top)
+topConstraint?.constant = 20
+```
 
 
 
