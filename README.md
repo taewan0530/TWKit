@@ -29,7 +29,7 @@ pod 'TWKit/Extension'
 
 ## Usage
 
-#EasyStyle
+###EasyStyle
 ```swift
 let manger = EasyStyleManager.sharedInstance
 manger.registerStyle("sample") { view in
@@ -45,8 +45,15 @@ manger.registerStyle("test") { view in
 }
 ```
 
+####Applying Styles:
+
+#####Interface Builder:
 ![Alt text](imgs/easystyle_01.png?raw=true)
 
+#####Code:
+```swift
+view.easyStyle = "sample, test"
+```
 
 
 ## Author
