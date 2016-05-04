@@ -27,7 +27,7 @@ class StyleGenerator {
         
         manger.registerStyle("test") { view in
             if let label = view as? UILabel {
-                label.textColor = UIColor.whiteColor()
+                label.textColor = UIColor.cyanColor()
             }
         }
     }

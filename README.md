@@ -5,12 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/TWKit.svg?style=flat)](http://cocoapods.org/pods/TWKit)
 [![Platform](https://img.shields.io/cocoapods/p/TWKit.svg?style=flat)](http://cocoapods.org/pods/TWKit)
 
-## Usage
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
-
 ## Installation
 
 TWKit is available through [CocoaPods](http://cocoapods.org). To install
@@ -23,15 +17,37 @@ pod 'TWKit'
 OR
 
 ```ruby
-pod 'TWKit/Extension'
-pod 'TWKit/Function'
+pod 'TWKit/EasyStyle'
+pod 'TWKit/GetConstraint'
+pod 'TWKit/AttributedString'
+pod 'TWKit/KeyboardHelper'
 pod 'TWKit/ObjectPool'
 pod 'TWKit/StructObject'
-pod 'TWKit/EasyStyle'
-pod 'TWKit/AttributedString'
-pod 'TWKit/GetConstraint'
-pod 'TWKit/KeyboardHelper'
+pod 'TWKit/Function'
+pod 'TWKit/Extension'
 ```
+
+## Usage
+
+#EasyStyle
+```swift
+let manger = EasyStyleManager.sharedInstance
+manger.registerStyle("sample") { view in
+    if let label = view as? UILabel {
+        label.backgroundColor = UIColor.blueColor()
+    }
+}
+
+manger.registerStyle("test") { view in
+    if let label = view as? UILabel {
+        label.textColor = UIColor.cyanColor()
+    }
+}
+```
+
+![Alt text](imgs/easystyle_01.png?raw=true)
+
+
 
 ## Author
 
