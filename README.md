@@ -27,12 +27,11 @@ pod 'TWKit/Function'
 pod 'TWKit/Extension'
 ```
 
-## Usage
+# Usage
 
-###EasyStyle
+##EasyStyle
 
 뷰에 디자인만 적용하기 위해 IBOutlet으로 코드와 연결하는것을 피하고 손쉽게 뷰에 스타일을 적용 하기위해서 
-
 'MGEStyles'를 swift로 바꾸고 동시에 여러 스타일을 적용할 수 있도록 개발.
 
 ```swift
@@ -50,7 +49,7 @@ manger.registerStyle("test") { view in
 }
 ```
 
-####Applying Styles
+###Applying Styles
 
 By Interface Builder
 인터페이스 빌더를 사용하면 IBOutlet을 사용할 필요가 없어서 좋다 :)
@@ -69,7 +68,7 @@ Result
 ![](imgs/easystyle_02.png?raw=true)
 
 
-###GetConstraint
+##GetConstraint
 
 뷰와 코드를 IBOutlet으로 연결되어 많은 변수가 참조되는 것이 싫어서 개발
 Left,Right 와 Leading,Trailing 다르다는것을 유의하고 사용
