@@ -137,11 +137,11 @@ for label in objPool.activeList {
 
 ##StructObject
 
-performSegueWithIdentifier(identifier:, sender:)에서 struct를 sender에 넣고 싶을때 사용!
+performSegueWithIdentifier(identifier: String, sender: AnyObject?)에서 struct를 sender: AnyObject에 넣고 싶을때 사용!
 
 ```swift
-let struct = StructObject(CGRectMake(0,0,10,10))
-let rect = StructObject<CGRect>.from(struct)
+let stObj = StructObject(CGRectMake(0,0,10,10))
+let rect = StructObject<CGRect>.from(stObj)
 print("StructObject as CGRect is: \(rect)")
 ```
 
