@@ -5,6 +5,6 @@
 
 import Foundation
 
-public func dispatch_dealy_t(dealy: Double) -> dispatch_time_t {
-    return dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * dealy))
+public func dispatch_delay_t(delay: Double) -> dispatch_time_t {
+    return dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * delay))
 }
