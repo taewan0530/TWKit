@@ -6,28 +6,28 @@
 import UIKit
 
 public class KeyboardHelper: NSObject {
-
+    
     enum Status {
         case Show, Hide
     }
-
+    
     struct DefaultInset {
         var bottom: CGFloat = 0
         var indicatorBottom: CGFloat = 0
     }
-
+    
     private var status: Status = .Hide
     private var defaultInset = DefaultInset()
     private weak var scrollView: UIScrollView?
-
+    
     public var baseLineSpace: CGFloat = 0
-
+    
     public init(scrollView: UIScrollView?) {
         super.init()
         self.scrollView = scrollView
         addEvents()
     }
-
+    
     deinit {
         removeEvents()
     }
@@ -42,17 +42,17 @@ private extension KeyboardHelper {
         }
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
-
+        
         if scrollView.keyboardDismissMode == .None {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(onLooseKeyboardFocus))
             scrollView.addGestureRecognizer(gesture)
         }
     }
-
+    
     func removeEvents() {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-
+    
     @objc
     func onLooseKeyboardFocus(sender: UITapGestureRecognizer) {
         guard let scrollView = scrollView else {
@@ -60,28 +60,31 @@ private extension KeyboardHelper {
         }
         scrollView.endEditing(true)
     }
-
+    
     @objc
     func keyboardWillShow(notification: NSNotification) {
         if status == .Show || scrollView == nil {
             return
         }
         status = .Show
-
+        
+        let bottomSpacing = CGRectGetMaxY(UIScreen.mainScreen().bounds) - CGRectGetMaxY(scrollView!.frame)
+        
+        
         defaultInset.bottom = scrollView?.contentInset.bottom ?? 0
         defaultInset.indicatorBottom = scrollView?.scrollIndicatorInsets.bottom ?? 0
-
-        let keyboardHeight = getKeyboardHeight(notification: notification)
-
+        
+        let keyboardHeight = getKeyboardHeight(notification: notification) - bottomSpacing
+        
         scrollView!.contentInset.bottom = keyboardHeight + defaultInset.bottom
         scrollView!.scrollIndicatorInsets.bottom = keyboardHeight + defaultInset.indicatorBottom
-
+        
         guard let textField = findActiveResponderFrame(scrollView!) as? UITextField
-        where baseLineSpace != 0 else {
-            return
+            where baseLineSpace != 0 else {
+                return
         }
         //textView는 baseLineSpace 무시
-
+        
         var rect = textField.frame
         rect.origin.y += baseLineSpace
         let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.05))
@@ -90,18 +93,18 @@ private extension KeyboardHelper {
             self.scrollView!.scrollRectToVisible(rect, animated: true)
         }
     }
-
+    
     @objc
     func keyboardWillHide(notification: NSNotification) {
         if status == .Hide || scrollView == nil {
             return
         }
         status = .Hide
-
+        
         scrollView?.contentInset.bottom = defaultInset.bottom
         scrollView?.scrollIndicatorInsets.bottom = defaultInset.indicatorBottom
     }
-
+    
     func findActiveResponderFrame(view: UIView) -> UIView? {
         if view.isFirstResponder() {
             return view
@@ -114,7 +117,7 @@ private extension KeyboardHelper {
         }
         return nil
     }
-
+    
     func getKeyboardHeight(notification data: NSNotification) -> CGFloat {
         let userInfo: NSDictionary? = data.userInfo
         let keyboardFrame: NSValue? = userInfo?.valueForKey(UIKeyboardFrameEndUserInfoKey) as? NSValue

@@ -48,7 +48,7 @@ public extension String {
     public func rangesOfString(searchString: String, options mask: NSStringCompareOptions = .LiteralSearch) -> [NSRange] {
         let nsStr = self as NSString
         var results = [NSRange]()
-        var searchRange = NSMakeRange(0, nsStr.length);
+        var searchRange = NSMakeRange(0, nsStr.length)
         var range = nsStr.rangeOfString(searchString, options: mask, range: searchRange)
 
         while range.location != NSNotFound {

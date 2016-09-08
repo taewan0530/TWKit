@@ -10,6 +10,7 @@ import Foundation
 
 
 public class EasyStyleManager {
+
     public class var sharedInstance: EasyStyleManager {
 
         struct Static {
@@ -23,7 +24,7 @@ public class EasyStyleManager {
         return Static.instance!
     }
 
-    private var registeredStyles: [String:EasyStyle] = [:]
+    private var registeredStyles: [String: EasyStyle] = [:]
 
 
     public subscript(key: String?) -> EasyStyle? {

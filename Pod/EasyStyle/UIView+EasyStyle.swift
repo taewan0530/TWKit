@@ -12,9 +12,7 @@ import UIKit
 public extension UIView {
     @IBInspectable
     public var easyStyle: String {
-        get {
-            return "support only setter"
-        }
+        get { return "support only setter" }
         set {
             let styles = newValue.componentsSeparatedByString(",")
             for style in styles {
