@@ -13,7 +13,7 @@ public let TWKitUIImageAttributeName: String = "TWKitUIImageAttributeName"
 public let TWKitUIImageOffsetYAttributeName: String = "TWKitUIImageOffsetYAttributeName"
 
 public extension String {
-    public func toAttributedString(attrs: TWKitAttributesWithKey) -> NSAttributedString {
+    public func toAttributedString(_ attrs: TWKitAttributesWithKey) -> NSAttributedString {
         let searchAttr = NSMutableAttributedString(string: self)
         var replacesOffset = 0
         for (key, value) in attrs {
