@@ -11,19 +11,8 @@ import Foundation
 
 public class EasyStyleManager {
 
-    public class var sharedInstance: EasyStyleManager {
-
-        struct Static {
-            static var onceToken: dispatch_once_t = 0
-            static var instance: EasyStyleManager? = nil
-        }
-
-        dispatch_once(&Static.onceToken) {
-            Static.instance = EasyStyleManager()
-        }
-        return Static.instance!
-    }
-
+    public static let sharedInstance: EasyStyleManager = EasyStyleManager()
+    
     private var registeredStyles: [String: EasyStyle] = [:]
 
 
@@ -42,7 +31,7 @@ public class EasyStyleManager {
         }
     }
 
-    public func registerStyle(key: String, parent: String? = nil, configuration: EasyStyle.ConfigurationBlock) {
+    public func registerStyle(key: String, parent: String? = nil, configuration: @escaping EasyStyle.ConfigurationBlock) {
         self[key] = EasyStyle(parentStyle: self[parent], configration: configuration)
     }
 
@@ -51,12 +40,12 @@ public class EasyStyleManager {
     }
 
     public func unregisterStyleWithKey(key: String) {
-        registeredStyles.removeValueForKey(key.trim)
+        registeredStyles.removeValue(forKey: key.trim)
     }
 }
 
 private extension String {
     var trim: String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        return self.trimmingCharacters(in: CharacterSet.whitespaces)
     }
 }

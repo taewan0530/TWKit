@@ -188,6 +188,8 @@
 				TargetAttributes = {
 					327A6DEC1CC9BFA600BB9743 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = C8LLTKJ2XT;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -353,10 +355,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C8LLTKJ2XT;
 				INFOPLIST_FILE = "$(SRCROOT)/TWKit/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.taewan.TWKitDemo;
 				PRODUCT_NAME = TWKitDemo;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -364,10 +369,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C8LLTKJ2XT;
 				INFOPLIST_FILE = "$(SRCROOT)/TWKit/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.taewan.TWKitDemo;
 				PRODUCT_NAME = TWKitDemo;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

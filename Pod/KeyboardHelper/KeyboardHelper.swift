@@ -8,7 +8,7 @@ import UIKit
 public class KeyboardHelper: NSObject {
     
     enum Status {
-        case Show, Hide
+        case show, hide
     }
     
     struct DefaultInset {
@@ -16,9 +16,9 @@ public class KeyboardHelper: NSObject {
         var indicatorBottom: CGFloat = 0
     }
     
-    private var status: Status = .Hide
-    private var defaultInset = DefaultInset()
-    private weak var scrollView: UIScrollView?
+    var status: Status = .hide
+    var defaultInset = DefaultInset()
+    weak var scrollView: UIScrollView?
     
     public var baseLineSpace: CGFloat = 0
     
@@ -40,17 +40,17 @@ private extension KeyboardHelper {
         guard let scrollView = scrollView else {
             return
         }
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        if scrollView.keyboardDismissMode == .None {
+        if scrollView.keyboardDismissMode == .none {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(onLooseKeyboardFocus))
             scrollView.addGestureRecognizer(gesture)
         }
     }
     
     func removeEvents() {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc
@@ -63,12 +63,12 @@ private extension KeyboardHelper {
     
     @objc
     func keyboardWillShow(notification: NSNotification) {
-        if status == .Show || scrollView == nil {
+        if status == .show || scrollView == nil {
             return
         }
-        status = .Show
+        status = .show
         
-        let bottomSpacing = CGRectGetMaxY(UIScreen.mainScreen().bounds) - CGRectGetMaxY(scrollView!.frame)
+        let bottomSpacing = UIScreen.main.bounds.maxY - scrollView!.frame.maxY
         
         
         defaultInset.bottom = scrollView?.contentInset.bottom ?? 0
@@ -79,38 +79,44 @@ private extension KeyboardHelper {
         scrollView!.contentInset.bottom = keyboardHeight + defaultInset.bottom
         scrollView!.scrollIndicatorInsets.bottom = keyboardHeight + defaultInset.indicatorBottom
         
-        guard let textField = findActiveResponderFrame(scrollView!) as? UITextField
-            where baseLineSpace != 0 else {
+        guard let textField = findActiveResponderFrame(view: scrollView!) as? UITextField,
+            baseLineSpace != 0 else {
                 return
         }
         //textView는 baseLineSpace 무시
         
         var rect = textField.frame
         rect.origin.y += baseLineSpace
-        let delay = dispatch_time(DISPATCH_TIME_NOW, Int64(Double(NSEC_PER_SEC) * 0.05))
-        dispatch_after(delay, dispatch_get_main_queue()) {
-            _ in
-            self.scrollView!.scrollRectToVisible(rect, animated: true)
+        
+//        let delay = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(Double(NSEC_PER_SEC) * 0.05))
+//        dispatch_after(delay, dispatch_get_main_queue()) {
+//            _ in
+//            self.scrollView!.scrollRectToVisible(rect, animated: true)
+//        }
+//        
+        let deadline = DispatchTime.now() + (Double(NSEC_PER_SEC) * 0.05)
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
+             self.scrollView!.scrollRectToVisible(rect, animated: true)
         }
     }
     
     @objc
     func keyboardWillHide(notification: NSNotification) {
-        if status == .Hide || scrollView == nil {
+        if status == .hide || scrollView == nil {
             return
         }
-        status = .Hide
+        status = .hide
         
         scrollView?.contentInset.bottom = defaultInset.bottom
         scrollView?.scrollIndicatorInsets.bottom = defaultInset.indicatorBottom
     }
     
     func findActiveResponderFrame(view: UIView) -> UIView? {
-        if view.isFirstResponder() {
+        if view.isFirstResponder {
             return view
         } else {
             for subview in view.subviews {
-                if let found = findActiveResponderFrame(subview) {
+                if let found = findActiveResponderFrame(view: subview) {
                     return found
                 }
             }
@@ -119,9 +125,9 @@ private extension KeyboardHelper {
     }
     
     func getKeyboardHeight(notification data: NSNotification) -> CGFloat {
-        let userInfo: NSDictionary? = data.userInfo
-        let keyboardFrame: NSValue? = userInfo?.valueForKey(UIKeyboardFrameEndUserInfoKey) as? NSValue
-        let keyboardRectangle = keyboardFrame?.CGRectValue()
+        let userInfo: NSDictionary? = data.userInfo as NSDictionary?
+        let keyboardFrame: NSValue? = userInfo?.value(forKey: UIKeyboardFrameEndUserInfoKey) as? NSValue
+        let keyboardRectangle = keyboardFrame?.cgRectValue
         return keyboardRectangle?.height ?? 0
     }
 }

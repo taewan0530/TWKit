@@ -11,17 +11,17 @@ import UIKit
 
 public class ObjectPool<T>: NSObject {
     public typealias GeneratorBlock = () -> T
-
+    
     public private(set) var activeList = [T]()
     public private(set) var deactiveList = [T]()
-
-    private var generatorBlock: GeneratorBlock?
-
+    
+    fileprivate var generatorBlock: GeneratorBlock?
+    
     public init(generatorBlock block: GeneratorBlock? = nil) {
         generatorBlock = block
         super.init()
     }
-
+    
     public func getInstance() -> T! {
         var instance: Any?
         if deactiveList.count == 0 {
@@ -35,16 +35,16 @@ public class ObjectPool<T>: NSObject {
         activeList.append(genericObj)
         return genericObj
     }
-
+    
     public func returnInstance(instance: T) {
-        for (idx, value) in activeList.enumerate() {
-            if isEqual(instance, b: value) {
+        for (idx, value) in activeList.enumerated() {
+            if isEqual(a: instance, b: value) {
                 //view객체라면 화면에서 제거.
                 if let view = instance as? UIView {
                     view.removeFromSuperview()
                 }
                 deactiveList.append(instance)
-                activeList.removeAtIndex(idx)
+                activeList.remove(at: idx)
                 return
             }
         }
@@ -52,8 +52,8 @@ public class ObjectPool<T>: NSObject {
 }
 
 
-private extension ObjectPool {
-    private func createInstance() -> Any! {
+extension ObjectPool {
+    internal func createInstance() -> Any! {
         if let generator = generatorBlock {
             return generator()
         }
@@ -63,12 +63,10 @@ private extension ObjectPool {
         }
         return clz.init()
     }
-
-    private func isEqual(a: T, b: T) -> Bool {
-        guard let aObj = a as? AnyObject,
-        bObj = b as? AnyObject else {
-            return false
-        }
+    
+    internal func isEqual(a: T, b: T) -> Bool {
+        let aObj = a as AnyObject
+        let bObj = b as AnyObject
         return aObj === bObj
     }
 }

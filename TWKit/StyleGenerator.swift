@@ -19,15 +19,15 @@ class StyleGenerator {
         
         let manger = EasyStyleManager.sharedInstance
         
-        manger.registerStyle("sample") { view in
+        manger.registerStyle(key: "sample") { view in
             if let label = view as? UILabel {
-                label.backgroundColor = UIColor.blueColor()
+                label.backgroundColor = UIColor.blue
             }
         }
         
-        manger.registerStyle("test") { view in
+        manger.registerStyle(key: "test") { view in
             if let label = view as? UILabel {
-                label.textColor = UIColor.cyanColor()
+                label.textColor = UIColor.cyan
             }
         }
     }

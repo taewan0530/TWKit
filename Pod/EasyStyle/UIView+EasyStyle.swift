@@ -14,12 +14,12 @@ public extension UIView {
     public var easyStyle: String {
         get { return "support only setter" }
         set {
-            let styles = newValue.componentsSeparatedByString(",")
+            let styles = newValue.components(separatedBy: ",")
             for style in styles {
                 guard let easyStyle = EasyStyleManager.sharedInstance[style] else {
                     continue
                 }
-                applyStyle(easyStyle)
+                applyStyle(style: easyStyle)
             }
         }
     }
@@ -29,7 +29,7 @@ public extension UIView {
 private extension UIView {
     func applyStyle(style: EasyStyle) {
         if let parent = style.parentStyle {
-            self.applyStyle(parent)
+            self.applyStyle(style: parent)
         }
         style.configrationBlock(self)
     }

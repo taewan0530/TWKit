@@ -13,7 +13,6 @@ import UIKit
 
 public extension UIView {
   
-    
     public func getConstraint(identifier: String) -> NSLayoutConstraint? {
         if let superview = self.superview {
             for constraint in superview.constraints where constraint.identifier == identifier {
@@ -32,7 +31,7 @@ public extension UIView {
             return constrinsts.first
         }
         //active deactive도 확인한번 해줄까.
-        return constrinsts.maxElement {
+        return constrinsts.max {
              $0.0.priority < $0.1.priority
         }
     }
@@ -45,9 +44,9 @@ public extension UIView {
         var results: [NSLayoutConstraint] = []
 
         if let superview = self.superview {
-            results += UIView.targetFromConstraints(superview, item: view, attribute: attr1)
+            results += UIView.targetFromConstraints(target: superview, item: view, attribute: attr1)
         }
-        results += UIView.targetFromConstraints(self, item: view, attribute: attr1)
+        results += UIView.targetFromConstraints(target: self, item: view, attribute: attr1)
         
         return results
     }
@@ -57,13 +56,13 @@ public extension UIView {
         var results: [NSLayoutConstraint] = []
         
         for constraint in target.constraints {
-            if "NSContentSizeLayoutConstraint" == classNameAsString(constraint) {
+            if "NSContentSizeLayoutConstraint" == classNameAsString(obj: constraint) {
                 continue
             }
             
             let targetAttribute: NSLayoutAttribute
             
-            if "_UILayoutGuide" == classNameAsString(constraint.firstItem) {
+            if "_UILayoutGuide" == classNameAsString(obj: constraint.firstItem) {
                 targetAttribute = constraint.secondAttribute
             } else {
                 targetAttribute = constraint.firstAttribute
@@ -90,7 +89,7 @@ public extension UIView {
     }
 
 
-    private class func classNameAsString(obj: Any) -> String {
-        return String(obj.dynamicType).componentsSeparatedByString("__").last!
+    static func classNameAsString(obj: AnyObject) -> String {
+        return  type(of: obj).description().components(separatedBy:"__").last!
     }
 }

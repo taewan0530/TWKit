@@ -10,23 +10,23 @@ import UIKit
 
 
 public class EasyStyle: NSObject {
-    public typealias ConfigurationBlock = UIView -> Void
+    public typealias ConfigurationBlock = (UIView) -> Void
     
     private(set) var combineKeys: [String?]?
     
     private(set) weak var parentStyle: EasyStyle?
     private(set) var configrationBlock: ConfigurationBlock!
 
-    public init(parentStyle parent: EasyStyle? = nil, configration: ConfigurationBlock) {
+    public init(parentStyle parent: EasyStyle? = nil, configration: @escaping ConfigurationBlock) {
         parentStyle = parent
         configrationBlock = configration
     }
 
-    public class func styleWithConfigration(configration: ConfigurationBlock) -> EasyStyle {
+    public class func styleWithConfigration(configration: @escaping ConfigurationBlock) -> EasyStyle {
         return EasyStyle(parentStyle: nil, configration: configration)
     }
 
-    public class func styleWithParent(parent: EasyStyle, configration: ConfigurationBlock) -> EasyStyle {
+    public class func styleWithParent(parent: EasyStyle, configration: @escaping ConfigurationBlock) -> EasyStyle {
         return EasyStyle(parentStyle: parent, configration: configration)
     }
 
