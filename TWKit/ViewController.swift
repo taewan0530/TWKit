@@ -40,9 +40,7 @@ class ViewController: UIViewController {
         
       
         
-        
-        print(buttonButton.getConstraints(item: buttonButton, attribute: .bottom))
-        print(buttonButton.getConstraint(attribute: .bottom))
+    
     }
     
     func exampleStructObject() {
@@ -63,14 +61,14 @@ class ViewController: UIViewController {
         
         let attributeString: NSAttributedString
         if let img = UIImage(named: "bg_2") {
-            attributeString = text.toAttributedString(attrs: [
+            attributeString = text.toAttributedString([
                 "Lab": [NSForegroundColorAttributeName : UIColor.brown],
                 "abe": [NSBackgroundColorAttributeName : UIColor.purple],
                 "{@image}": [TWKitUIImageAttributeName: img]
                 ])
             
         } else {
-            attributeString = text.toAttributedString(attrs: [
+            attributeString = text.toAttributedString([
                 "Lab": [NSForegroundColorAttributeName : UIColor.brown],
                 "abe": [NSBackgroundColorAttributeName : UIColor.purple]
                 ])

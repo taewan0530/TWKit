@@ -12,14 +12,14 @@
 import Foundation
 
 
-public class StructObject<T> {
+open class StructObject<T> {
     public let value: T
 
     public init(_ value: T) {
         self.value = value
     }
 
-    public class func from(anyObject: AnyObject?) -> T? {
+    open class func from(anyObject: AnyObject?) -> T? {
         guard let obj = anyObject as? StructObject<T> else {
             return nil
         }

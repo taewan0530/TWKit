@@ -9,14 +9,14 @@
 import Foundation
 
 
-public class EasyStyleManager {
+open class EasyStyleManager {
 
     public static let sharedInstance: EasyStyleManager = EasyStyleManager()
     
     private var registeredStyles: [String: EasyStyle] = [:]
 
 
-    public subscript(key: String?) -> EasyStyle? {
+    open subscript(key: String?) -> EasyStyle? {
         get {
             guard let trimedKey = key?.trim else {
                 return nil
@@ -31,15 +31,15 @@ public class EasyStyleManager {
         }
     }
 
-    public func registerStyle(key: String, parent: String? = nil, configuration: @escaping EasyStyle.ConfigurationBlock) {
+    open func registerStyle(key: String, parent: String? = nil, configuration: @escaping EasyStyle.ConfigurationBlock) {
         self[key] = EasyStyle(parentStyle: self[parent], configration: configuration)
     }
 
-    public func registerStyle(key: String, style: EasyStyle) {
+    open func registerStyle(key: String, style: EasyStyle) {
         self[key] = style
     }
 
-    public func unregisterStyleWithKey(key: String) {
+    open func unregisterStyleWithKey(key: String) {
         registeredStyles.removeValue(forKey: key.trim)
     }
 }

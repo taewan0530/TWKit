@@ -9,7 +9,7 @@
 import UIKit
 
 
-public class EasyStyle: NSObject {
+open class EasyStyle: NSObject {
     public typealias ConfigurationBlock = (UIView) -> Void
     
     private(set) var combineKeys: [String?]?
@@ -22,11 +22,11 @@ public class EasyStyle: NSObject {
         configrationBlock = configration
     }
 
-    public class func styleWithConfigration(configration: @escaping ConfigurationBlock) -> EasyStyle {
+    open class func styleWithConfigration(configration: @escaping ConfigurationBlock) -> EasyStyle {
         return EasyStyle(parentStyle: nil, configration: configration)
     }
 
-    public class func styleWithParent(parent: EasyStyle, configration: @escaping ConfigurationBlock) -> EasyStyle {
+    open class func styleWithParent(parent: EasyStyle, configration: @escaping ConfigurationBlock) -> EasyStyle {
         return EasyStyle(parentStyle: parent, configration: configration)
     }
 

@@ -9,11 +9,11 @@
 
 import UIKit
 
-public class ObjectPool<T>: NSObject {
+open class ObjectPool<T>: NSObject {
     public typealias GeneratorBlock = () -> T
     
-    public private(set) var activeList = [T]()
-    public private(set) var deactiveList = [T]()
+    open private(set) var activeList = [T]()
+    open private(set) var deactiveList = [T]()
     
     fileprivate var generatorBlock: GeneratorBlock?
     
@@ -22,7 +22,7 @@ public class ObjectPool<T>: NSObject {
         super.init()
     }
     
-    public func getInstance() -> T! {
+    open func getInstance() -> T! {
         var instance: Any?
         if deactiveList.count == 0 {
             instance = createInstance()
@@ -36,7 +36,7 @@ public class ObjectPool<T>: NSObject {
         return genericObj
     }
     
-    public func returnInstance(instance: T) {
+    open func returnInstance(instance: T) {
         for (idx, value) in activeList.enumerated() {
             if isEqual(a: instance, b: value) {
                 //view객체라면 화면에서 제거.

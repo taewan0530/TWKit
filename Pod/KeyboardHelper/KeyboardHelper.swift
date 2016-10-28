@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class KeyboardHelper: NSObject {
+open class KeyboardHelper: NSObject {
     
     enum Status {
         case show, hide
@@ -20,7 +20,7 @@ public class KeyboardHelper: NSObject {
     var defaultInset = DefaultInset()
     weak var scrollView: UIScrollView?
     
-    public var baseLineSpace: CGFloat = 0
+    open var baseLineSpace: CGFloat = 0
     
     public init(scrollView: UIScrollView?) {
         super.init()
