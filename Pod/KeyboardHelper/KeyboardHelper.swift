@@ -18,9 +18,10 @@ open class KeyboardHelper: NSObject {
     
     var status: Status = .hide
     var defaultInset = DefaultInset()
+    
     weak var scrollView: UIScrollView?
     
-    open var baseLineSpace: CGFloat = 0
+//    open var focusOffset: CGFloat = 0
     
     public init(scrollView: UIScrollView?) {
         super.init()
@@ -29,6 +30,7 @@ open class KeyboardHelper: NSObject {
     }
     
     deinit {
+        print("deinit KeyboardHelper")
         removeEvents()
     }
 }
@@ -63,52 +65,52 @@ private extension KeyboardHelper {
     
     @objc
     func keyboardWillShow(notification: NSNotification) {
-        if status == .show || scrollView == nil {
-            return
-        }
+        guard let scrollView = self.scrollView else { return }
+        if status == .show  { return }
         status = .show
         
-        let bottomSpacing = UIScreen.main.bounds.maxY - scrollView!.frame.maxY
+        let bottomSpacing = UIScreen.main.bounds.maxY - scrollView.frame.maxY
         
         
-        defaultInset.bottom = scrollView?.contentInset.bottom ?? 0
-        defaultInset.indicatorBottom = scrollView?.scrollIndicatorInsets.bottom ?? 0
+        defaultInset.bottom = scrollView.contentInset.bottom
+        defaultInset.indicatorBottom = scrollView.scrollIndicatorInsets.bottom
         
         let keyboardHeight = getKeyboardHeight(notification: notification) - bottomSpacing
         
-        scrollView!.contentInset.bottom = keyboardHeight + defaultInset.bottom
-        scrollView!.scrollIndicatorInsets.bottom = keyboardHeight + defaultInset.indicatorBottom
-        
-        guard let textField = findActiveResponderFrame(view: scrollView!) as? UITextField,
-            baseLineSpace != 0 else {
+        scrollView.contentInset.bottom = keyboardHeight + defaultInset.bottom
+        scrollView.scrollIndicatorInsets.bottom = keyboardHeight + defaultInset.indicatorBottom
+       
+        /*
+        guard let textField = findActiveResponderFrame(view: scrollView) as? UITextField,
+            focusOffset != 0 else {
                 return
         }
         //textView는 baseLineSpace 무시
         
         var rect = textField.frame
-        rect.origin.y += baseLineSpace
+        print(rect)
+        rect.origin.y -= focusOffset * 2
+        rect.size.height += focusOffset
+        print(rect)
         
-//        let delay = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(Double(NSEC_PER_SEC) * 0.05))
-//        dispatch_after(delay, dispatch_get_main_queue()) {
-//            _ in
-//            self.scrollView!.scrollRectToVisible(rect, animated: true)
-//        }
-//        
-        let deadline = DispatchTime.now() + (Double(NSEC_PER_SEC) * 0.05)
+        let deadline = DispatchTime.now() + 2
+        print(deadline)
+        
         DispatchQueue.main.asyncAfter(deadline: deadline) {
-             self.scrollView!.scrollRectToVisible(rect, animated: true)
+            print("!!:\(self.scrollView?.contentSize)")
+            self.scrollView?.scrollRectToVisible(rect, animated: true)
         }
+         */
     }
     
     @objc
     func keyboardWillHide(notification: NSNotification) {
-        if status == .hide || scrollView == nil {
-            return
-        }
+        guard let scrollView = self.scrollView else { return }
+        if status == .hide { return }
         status = .hide
         
-        scrollView?.contentInset.bottom = defaultInset.bottom
-        scrollView?.scrollIndicatorInsets.bottom = defaultInset.indicatorBottom
+        scrollView.contentInset.bottom = defaultInset.bottom
+        scrollView.scrollIndicatorInsets.bottom = defaultInset.indicatorBottom
     }
     
     func findActiveResponderFrame(view: UIView) -> UIView? {

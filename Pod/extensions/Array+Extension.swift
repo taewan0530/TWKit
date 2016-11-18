@@ -11,8 +11,10 @@
 import Foundation
 
 
-public extension Array {
-    public subscript(safe index: Int) -> Element? {
+public extension Collection where Indices.Iterator.Element == Index {
+    
+    /// Returns the element at the specified index iff it is within bounds, otherwise nil.
+    public subscript (safe index: Index) -> Generator.Element? {
         return indices.contains(index) ? self[index] : nil
     }
 }

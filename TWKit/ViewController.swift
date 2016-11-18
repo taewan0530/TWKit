@@ -20,7 +20,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-        exampleStructObject()
         exampleAttributedString()
         exampleExtensionArray()
     }
@@ -37,27 +36,13 @@ class ViewController: UIViewController {
         let topConstraint = label.getConstraint(attribute: .top)
         let beforeConstant = topConstraint?.constant ?? 0
         topConstraint?.constant = beforeConstant == 0 ? 70 : 0
-        
-      
-        
-    
     }
     
-    func exampleStructObject() {
-        print("======= exampleStructObject =======")
-        
-        let stobjc = StructObject(CGRect(x: 0, y: 0, width: 10, height: 10))
-        let a = stobjc as AnyObject
-        
-        let url = StructObject<NSURL>.from(anyObject: a)
-        print("StructObject as NSURL is: \(url)")
-        let rect = StructObject<CGRect>.from(anyObject: a)
-        print("StructObject as CGRect is: \(rect)")
-    }
-    
+
     func exampleAttributedString() {
         guard let text = label.text else { return }
          print("======= exampleAttributedString =======")
+        let a = [1,2,3,4]
         
         let attributeString: NSAttributedString
         if let img = UIImage(named: "bg_2") {
